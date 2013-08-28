@@ -33,17 +33,27 @@
 }
 
 
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     if([request.URL.scheme isEqualToString: @"native"]) {
-        if ([request.URL.host isEqualToString:@"displayCamera"]) {
-            UIImagePickerController  *imagePicker = [[UIImagePickerController alloc] init];
-            [self presentViewController:imagePicker animated:YES completion:nil];
-        }
-        return NO;
+        return [self isNativeRequest:request.URL.host];
     }
     
     return YES;
 }
 
+- (BOOL) isNativeRequest:(NSString *)host
+{
+    if ([host isEqualToString:@"displayCamera"]) {
+        [self displayCamera:nil];
+    }
+    return NO;
+}
+
+
+- (IBAction) displayCamera:(id)sender {
+    UIImagePickerController  *imagePicker = [[UIImagePickerController alloc] init];
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
 @end
