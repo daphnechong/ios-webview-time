@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Mi9ViewController : UIViewController
+@interface Mi9ViewController : UIViewController <UIWebViewDelegate>
+
+@property (nonatomic) IBOutlet UIWebView *webView;
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
 
 @end
