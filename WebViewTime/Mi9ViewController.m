@@ -37,13 +37,13 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     if([request.URL.scheme isEqualToString: @"native"]) {
-        return [self isNativeRequest:request.URL.host];
+        return [self handleNativeRequest:request.URL.host];
     }
     
     return YES;
 }
 
-- (BOOL) isNativeRequest:(NSString *)host
+- (BOOL) handleNativeRequest:(NSString *)host
 {
     if ([host isEqualToString:@"displayCamera"]) {
         [self displayCamera:nil];
