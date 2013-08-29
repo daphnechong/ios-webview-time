@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:@"http://ios-codeschool.bilue.com.au/samples/v2/camera-button.html"];
+    NSURL *url = [NSURL URLWithString:@"http://ios-codeschool.bilue.com.au/samples/v3/native.html"];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     //self.webView.scalesPageToFit = YES;
@@ -36,7 +36,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if([request.URL.scheme isEqualToString: @"native"]) {
+    if([request.URL.scheme isEqualToString: @"native"]) {\
         return [self handleNativeRequest:request.URL.host];
     }
     
@@ -45,14 +45,15 @@
 
 - (BOOL) handleNativeRequest:(NSString *)host
 {
-    if ([host isEqualToString:@"displayCamera"]) {
-        [self displayCamera:nil];
-    }
+#   pragma clang diagnostic push
+#   pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self performSelector:NSSelectorFromString(host)];
+#   pragma clang diagnostic pop
     return NO;
 }
 
 
-- (IBAction) displayCamera:(id)sender {
+- (IBAction) displayCamera {
     UIImagePickerController  *imagePicker = [[UIImagePickerController alloc] init];
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
