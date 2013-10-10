@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		641B253C17CF50B200B2AFC5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641B253B17CF50B200B2AFC5 /* CoreMotion.framework */; };
+		648E33EF17D6E76100D29DCF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648E33EE17D6E76100D29DCF /* MessageUI.framework */; };
 		64BA2A9517CDE9580024B8D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BA2A9417CDE9580024B8D9 /* UIKit.framework */; };
 		64BA2A9717CDE9580024B8D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BA2A9617CDE9580024B8D9 /* Foundation.framework */; };
 		64BA2A9917CDE9580024B8D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BA2A9817CDE9580024B8D9 /* CoreGraphics.framework */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		641B253B17CF50B200B2AFC5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		648E33EE17D6E76100D29DCF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		64BA2A9117CDE9580024B8D9 /* WebViewTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebViewTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BA2A9417CDE9580024B8D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64BA2A9617CDE9580024B8D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648E33EF17D6E76100D29DCF /* MessageUI.framework in Frameworks */,
 				641B253C17CF50B200B2AFC5 /* CoreMotion.framework in Frameworks */,
 				64BA2A9517CDE9580024B8D9 /* UIKit.framework in Frameworks */,
 				64BA2A9717CDE9580024B8D9 /* Foundation.framework in Frameworks */,
@@ -59,6 +62,7 @@
 		64BA2A8817CDE9580024B8D9 = {
 			isa = PBXGroup;
 			children = (
+				648E33EE17D6E76100D29DCF /* MessageUI.framework */,
 				64BA2A9A17CDE9580024B8D9 /* WebViewTime */,
 				64BA2A9317CDE9580024B8D9 /* Frameworks */,
 				64BA2A9217CDE9580024B8D9 /* Products */,

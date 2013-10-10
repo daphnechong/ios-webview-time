@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface Mi9ViewController : UIViewController  <UIWebViewDelegate>
+@interface Mi9ViewController : UIViewController  <UIWebViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic) IBOutlet UIWebView *webView;
 

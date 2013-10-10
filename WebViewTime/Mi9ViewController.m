@@ -8,6 +8,7 @@
 
 #import "Mi9ViewController.h"
 #import <CoreMotion/CoreMotion.h>
+#import <MessageUI/MessageUI.h>
 
 
 @interface Mi9ViewController ()
@@ -23,16 +24,14 @@
 {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/"];
+    NSURL *url = [NSURL URLWithString:@"http://ios-codeschool.bilue.com.au/samples/v3/native.html"];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    self.webView.scalesPageToFit = YES;
+    //self.webView.scalesPageToFit = YES;
  
     self.motionManager =[[CMMotionManager alloc]init];
     [self startDeviceMotionUpdates];
-    //[self startAccelerometerUpdate];
-
-    // Do any additional setup after loading the view, typically from a nib.
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +58,7 @@
 
 #   pragma clang diagnostic push
 #   pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:NSSelectorFromString(url.host) withObject:url];
+    [self performSelector:NSSelectorFromString(url.host)];
 #   pragma clang diagnostic pop
     return NO;
 }
@@ -70,41 +69,36 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+- (IBAction) displayMail {
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = self;
+    
+    [mailViewController setSubject:@"email subject"];
+    [mailViewController setMessageBody:@"this is a message that has some text." isHTML:NO];
+    
+    [self presentViewController:mailViewController animated:YES completion:^{}];
+}
+
+-(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction) pollAccelerometer {
-      NSString *javascript = [NSString stringWithFormat:@"window.%@(%@,%@,%@)", self.callback, @"1", @"2", @"3"];
+    
+    NSString *javascript = [NSString stringWithFormat:@"window.%@(%@,%@,%@)", self.callback, @"1", @"2", @"3"];
     [self.webView stringByEvaluatingJavaScriptFromString:javascript];
 }
 
-- (void)startAccelerometerUpdate
-{
-    __block float x;
-    __block float y;
-    __block float z;
-    
-    [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
-                                             withHandler:^(CMAccelerometerData *data, NSError *error) {
-                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                     // Collecting data
-                                                     x = data.acceleration.x;
-                                                     y = data.acceleration.y;
-                                                     z = data.acceleration.z;
-                                                     
-                                                     NSLog(@"%f %f %f", x, y, z);
-                                                 });
-                                             }
-     
-     ];
-    
-}
-
-- (void)startDeviceMotionUpdates
+- (void) startDeviceMotionUpdates
 {
     [self.motionManager startDeviceMotionUpdatesToQueue:[[NSOperationQueue alloc] init]
                                              withHandler:^(CMDeviceMotion *motion, NSError *error) {
                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                      // Collecting data
                                                      
-                                                     NSLog(@"%f", motion.attitude.roll);
+                                                     NSString *javascript = [NSString stringWithFormat:@"window.%@(%f,%@,%@)", self.callback, motion.attitude.roll, @"2", @"3"];
+                                                     [self.webView stringByEvaluatingJavaScriptFromString:javascript];
                                                  });
                                              }
      
